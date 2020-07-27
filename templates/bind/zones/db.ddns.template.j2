@@ -1,0 +1,12 @@
+{# Zone file template for a minimalist style dynamic DNS server #}
+$ORIGIN .
+$TTL 10 ; 10 seconds
+{{ bind9_zone_ddns }}	IN	SOA	{{ bind9_ddns_server_domain }}.	{{ bind9_zone_responsible_email }}.	(
+    {{ bind9_zonefile_start_date_index.stdout }}    ; serial
+    3600        ; refresh (1 hour)
+    600         ; retry (10 minutes)
+    604800      ; expire (1 week)
+    300         ; minimum (5 minutes)
+    )
+
+    NS	{{ bind9_ddns_server_domain }}.

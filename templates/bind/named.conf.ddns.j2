@@ -1,0 +1,13 @@
+{# Config file template for a minimalist style dynamic DNS server #}
+key "{{ bind9_zone_ddns }}" {
+	algorithm HMAC-SHA512;
+	secret "{{bind9_ddns_private_key}}";
+};
+
+zone "{{ bind9_zone_ddns }}" IN {
+	type master;
+	file "{{ bind9_zonefile_dir }}/db.{{ bind9_zone_ddns }}";
+	allow-query { any; };
+	allow-update { key {{ bind9_zone_ddns }}; };
+	allow-transfer { {{ allowedDNSServersCsl }}; };
+};

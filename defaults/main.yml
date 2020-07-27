@@ -37,7 +37,7 @@ bind9_our_neighbors:
   - localnets
 
 # Install custom rndc.key
-bind9_rndc_algorithm: hmac-md5
+bind9_rndc_algorithm: HMAC-MD5
 # bind9_rndc_key:
 
 # Global primaries for all zones (if configured as secondary)
@@ -63,6 +63,9 @@ bind9_rndc_algorithm: hmac-md5
 bind9_zones_dynamic: []
 bind9_zones_static: []
 
+# DNS Zone for minimalist dynamic DNS server
+#bind9_zone_ddns:
+
 # Send DNSSEC ZSK in DNSKEY and DS format over XMPP after it got created
 bind9_dnssec_notify_xmpp: no
 bind9_dnssec_notify_xmpp_user: user@jabber.example.org
@@ -78,8 +81,11 @@ bind9_packages:
   - dnsutils
   - haveged
 
+# Directory for zone files
+bind9_zonefile_dir: '/var/lib/bind'
+
 # Directory for bind9 files templates
-bind9_templates: ""
+#bind9_templates: ""
 # The default value takes templates form the {{ role_path }}/templates/ directory of the role
 # You can set your own templates, for example with:
 # bind9_templates: "{{ playbook_dir }}/host_vars/<my_host>/templates/"
